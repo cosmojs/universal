@@ -30,6 +30,10 @@
     "dataSource": "mongodb",
     "public": true
   },
+  "Follower": {
+    "dataSource": "mongodb",
+    "public": true
+  },
   "Team": {
     "dataSource": "mongodb",
     "public": false

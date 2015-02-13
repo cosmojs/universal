@@ -7,11 +7,9 @@
     .projects {
       margin-bottom: 80px;
     }
-
     .projects .project {
       margin-bottom: 40px;
     }
-
     .projects .project a:hover {
       text-decoration: none;
     }
@@ -26,8 +24,18 @@
         <div>
           <h2>{{ user.displayName }}</h2>
           <h3>{{ user.team }}</h3>
-          <a href="/settings" class="btn btn-xs btn-default">edit your profile</a>          
+          <div ng-show="{{ isCurrentUser }}">
+            <a href="/settings" class="btn btn-xs btn-default">edit your profile</a>          
+          </div>
         </div>
+        <!-- 
+        <div>
+          <span>{{ user.followers.length }}</span><span> follower</span>
+        </div>
+        <div>
+          <span>{{ user.following.length }}</span><span> following</span>
+        </div>
+        -->
       </div>
       <div class="col-xs-9">
         <div class="projects">
@@ -37,7 +45,9 @@
               <a href="/projects/{{ project.id }}">
                 <h4>{{ project.title }}</h4>
                 <p class="text-mute">{{ project.description | preview }}</p>
-                <a href="/projects/{{ project.id }}/edit" class="btn btn-xs btn-default">edit project</a>
+                <div ng-show="isCurrentUser">
+                  <a href="/projects/{{ project.id }}/edit" class="btn btn-xs btn-default">edit project</a>
+                </div>
               </a>
             </div>
           </div>    

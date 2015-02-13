@@ -21,11 +21,11 @@
     <h3>Projects</h3>
     <div>
       <div class="project" ng-repeat="project in projects">
-        <a href="/projects/{{ project.id }}/edit">
+        <a href="/projects/{{ project.id }}">
           <h4>{{ project.title }}</h4>
           <p class="text-mute">{{ project.description | preview }}</p>
         </a>
-        <a href="/projects/{{ project.id }}/edit">edit project</a>
+        <a href="/projects/{{ project.id }}/edit" class="btn btn-xs btn-default">edit project</a>
       </div>
     </div>
     <button class="btn btn-primary btn-sm" ng-click="createProject()">create a new project</button>

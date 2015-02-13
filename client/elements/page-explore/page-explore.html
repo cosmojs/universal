@@ -3,12 +3,20 @@
     .projects {
       margin-bottom: 40px;
     }
-
     .projects .project {
       margin-bottom: 20px;
     }
-
     .projects .project a:hover {
+      text-decoration: none;
+    }
+
+    .users {
+      margin-bottom: 40px;
+    }
+    .users .user {
+      margin-bottom: 20px;
+    }
+    .users .user a:hover {
       text-decoration: none;
     }
   </style>
@@ -30,8 +38,12 @@
   </div>
   <div class="container">
     <h3>Users</h3>
-    <div>
-      <div ng-repeat="user in users"></div>
+    <div class="users">
+      <div class="user" ng-repeat="user in users">
+        <a href="/@{{ user.username }}">
+          <h4>{{ user.displayName }}</h4>
+        </a>
+      </div>
     </div>
   </div>
   <part-footer></part-footer>

@@ -27,7 +27,6 @@ angular.module('elements')
       var data = {
         id: BaseUser.getCurrentId(),
         displayName: $scope.user.displayName,
-        email: $scope.user.email,
         location: $scope.user.location,
         phone: $scope.user.phone
       };
@@ -68,7 +67,6 @@ angular.module('elements')
     };
 
     $scope.unlink = function(provider) {
-      console.log(provider);
       BaseUser.unlink({
           id: $scope.user.id,
           provider: provider

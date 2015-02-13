@@ -1,32 +1,81 @@
 angular.module('elements')
   .config(function ($routeProvider) {
 
-    function authenticated ($q, $location, BaseUser) {
+    function resolveProfile ($q, $location, $route, BaseUser) {
       var deferred = $q.defer();
-      var isAuthenticated = BaseUser.getCurrentId();
-      if (!isAuthenticated) {
-        $location.path('/login');
-      } else {
-        deferred.resolve();
-      }
+
+      BaseUser
+        .getCurrent()
+        .$promise
+        .then(function (user) {
+          $location.path('/@' + user.username);
+        })
+        .catch(function () {
+          $location.path('/login');
+        });
+
       return deferred.promise;
     }
 
-    $routeProvider.when('/profile', {
-      templateUrl: '/elements/page-profile/page-profile.html',
-      controller: 'PageProfileCtrl',
-      resolve: { authenticated: authenticated }
-    });
+    function resolveUser ($q, $location, $route, BaseUser) {
+      var username = $route.current.params.username;
+      var deferred = $q.defer();
+
+      BaseUser
+        .findOne({ filter: { where: { username: username } } })
+        .$promise
+        .then(function (user) {
+
+          BaseUser
+            .getCurrent()
+            .$promise
+            .then(function (current) {
+              deferred.resolve({
+                requested: user,
+                current: current
+              });
+            })
+            .catch(function () {
+              deferred.resolve({
+                requested: user,
+                current: current
+              })
+            })
+        })
+        .catch(function () {
+          $location.path('/404');
+        });
+
+      return deferred.promise;
+    }
+
+    $routeProvider
+      .when('/profile', {
+        templateUrl: '/elements/page-profile/page-profile.html',
+        controller: 'PageProfileCtrl',
+        resolve: { users: resolveProfile }
+      })
+      .when('/@:username', {
+        templateUrl: '/elements/page-profile/page-profile.html',
+        controller: 'PageProfileCtrl',
+        resolve: { users: resolveUser }
+      });
 
   })
-  .controller('PageProfileCtrl', function($scope, $http, BaseUser, Project) {
+  .controller('PageProfileCtrl', function($scope, $route, $http, BaseUser, Project, Follower) {
 
-    $scope.user = BaseUser.getCurrent();
+    var users = $route.current.locals.users;
+    var requested = users.requested;
+    var current = users.current;
+    var isCurrentUser = requested.id === current.id;
 
-    $scope.projects = Project.find({
-      ownerId: $scope.user.id
-    });
+    $scope.user = requested;
+    $scope.isCurrentUser = isCurrentUser;
 
+    $scope.projects = Project.find({ filter: { where: { ownerId: $scope.user.id } } });
+
+    // $scope.followers = Follower.find({ filter: { where: { followingId: $scope.user.id } } });
+    // $scope.following = Follower.find({ filter: { where: { followerId: $scope.user.id } } });
   })
   .filter('preview', function () {
 

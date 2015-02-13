@@ -11,6 +11,6 @@ angular.module('elements')
 
     $scope.projects = Project.find({});
 
-    $scope.users = []; //BaseUser.find({});
+    $scope.users = BaseUser.find({});
 
   });
