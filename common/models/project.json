@@ -3,16 +3,22 @@
   "base": "PersistedModel",
   "idInjection": true,
   "properties": {
-    "name": {
-      "type": "string"
+    "ownerId": {
+      "type": "number",
+      "required": true
     },
-    "balance": {
-      "type": "number"
+    "title": {
+      "type": "string",
+      "required": false
+    },
+    "description": {
+      "type": "string",
+      "required": false
     }
   },
   "validations": [],
   "relations": {
-    "user": {
+    "owner": {
       "type": "belongsTo",
       "model": "BaseUser",
       "foreignKey": "ownerId"
@@ -26,11 +32,22 @@
       "permission": "DENY"
     },
     {
-      "accessType": "READ",
+      "accessType": "WRITE",
       "principalType": "ROLE",
       "principalId": "$everyone",
+      "permission": "ALLOW"
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "$owner",
       "permission": "ALLOW",
-      "property": "listProjects"
+      "property": "upsert"
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "$owner",
+      "permission": "ALLOW",
+      "property": "update"
     },
     {
       "accessType": "READ",
@@ -45,20 +62,6 @@
       "principalId": "$everyone",
       "permission": "ALLOW",
       "property": "findById"
-    },
-    {
-      "accessType": "EXECUTE",
-      "principalType": "ROLE",
-      "principalId": "$authenticated",
-      "permission": "ALLOW",
-      "property": "donate"
-    },
-    {
-      "accessType": "EXECUTE",
-      "principalType": "ROLE",
-      "principalId": "$owner",
-      "permission": "ALLOW",
-      "property": "withdraw"
     }
   ],
   "methods": []

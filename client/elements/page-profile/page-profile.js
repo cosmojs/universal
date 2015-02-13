@@ -27,4 +27,11 @@ angular.module('elements')
       ownerId: $scope.user.id
     });
 
+  })
+  .filter('preview', function () {
+
+    return function (value) {
+      return value && value.substring(0, 50) + '...';
+    };
+
   });

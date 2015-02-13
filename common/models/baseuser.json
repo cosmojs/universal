@@ -5,6 +5,15 @@
   "properties": {
     "username": {
       "type": "string"
+    },
+    "fullname": {
+      "type": "string"
+    },
+    "location": {
+      "type": "string"
+    },
+    "phone": {
+      "type": "string"
     }
   },
   "validations": [],
@@ -18,6 +27,18 @@
       "type": "hasMany",
       "model": "Team",
       "foreignKey": "ownerId"
+    },
+    "followers": {
+      "type": "hasMany",
+      "model": "BaseUser",
+      "foreignKey": "followingId",
+      "through": "Follower"
+    },
+    "following": {
+      "type": "hasMany",
+      "model": "BaseUser",
+      "foreignKey": "followerId",
+      "through": "Follower"
     }
   },
   "acls": [
@@ -27,6 +48,12 @@
       "principalId": "$owner",
       "permission": "ALLOW",
       "property": "unlink"
+    },
+    { 
+      "principalType": "ROLE", 
+      "principalId": "$owner", 
+      "permission": "ALLOW", 
+      "property": "upsert" 
     }
   ],
   "methods": []

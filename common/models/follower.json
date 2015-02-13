@@ -1,0 +1,23 @@
+{
+  "name": "Follower",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "properties": {
+    "created_at": {
+      "type": "date",
+      "required": true
+    },
+    "followingId": {
+      "type": "number",
+      "required": true
+    },
+    "followerId": {
+      "type": "number",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": []
+}

@@ -6,14 +6,15 @@
     "ownerId": {
       "type": "number",
       "required": true
-    },
-    "memberId": {
-      "type": "number",
-      "required": true
     }
   },
   "validations": [],
   "relations": {
+    "owner": {
+      "type": "belongsTo",
+      "model": "BaseUser",
+      "foreignKey": "ownerId"
+    },
     "members": {
       "type": "hasMany",
       "model": "BaseUser",
