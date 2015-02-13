@@ -8,7 +8,8 @@ angular.module('elements')
         .getCurrent()
         .$promise
         .then(function (user) {
-          $location.path('/@' + user.username);
+          var username = user.username || user.id;
+          $location.path('/@' + username);
         })
         .catch(function () {
           $location.path('/login');
@@ -22,7 +23,7 @@ angular.module('elements')
       var deferred = $q.defer();
 
       BaseUser
-        .findOne({ filter: { where: { username: username } } })
+        .findOne({ filter: { where: { or: [{ username: username }, { id: username }] } } })
         .$promise
         .then(function (user) {
 
