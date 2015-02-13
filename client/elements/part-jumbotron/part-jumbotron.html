@@ -1,0 +1,24 @@
+<div name="part-jumbotron">
+  <style scoped part-style>
+    [name="part-jumbotron"] { 
+      display: block; 
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-position: center;
+      background-image: url({{ image }});
+      color: white;
+    }
+
+    [name="part-jumbotron"] .overlay {
+      width: 100%;
+      height: 100%;
+      min-height: {{ fullscreen ? '100vh' : '100%' }};
+      background-color: rgba(0,0,0,0.25);
+      padding-top: {{ fullscreen ? '80vh' : '160px' }};
+      padding-bottom: 15px;
+    }
+  </style>
+  <div class="overlay" ng-transclude>
+  </div>
+</div>

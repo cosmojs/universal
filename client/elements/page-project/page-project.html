@@ -1,0 +1,25 @@
+<div page="project">
+  <style scoped part-style>
+    [page="project"] {
+      padding-top: 80px;
+    }
+
+    .description {
+      margin-top: 20px;
+      background-color: #efefef;
+      padding-bottom: 20px;
+    }
+  </style>
+  <part-navbar></part-navbar>
+  <div class="container">
+    <h1>{{ project.name }}</h1>
+  </div>
+  <div class="container">
+    <a href="/projects/{{ project.id }}/edit" class="btn btn-xs btn-default">edit project</a>    
+  </div>
+  <div class="container description">
+    <h3>Description</h3>
+    <p>{{ project.description }}</p>
+  </div>
+  <part-footer></part-footer>
+</div>

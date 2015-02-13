@@ -1,0 +1,41 @@
+{
+  "_meta": {
+    "sources": [
+      "loopback/common/models",
+      "loopback/server/models",
+      "../common/models",
+      "./models"
+    ]
+  },
+  "User": {
+    "dataSource": "mongodb"
+  },
+  "AccessToken": {
+    "dataSource": "db",
+    "public": false
+  },
+  "ACL": {
+    "dataSource": "db",
+    "public": false
+  },
+  "RoleMapping": {
+    "dataSource": "db",
+    "public": false
+  },
+  "Role": {
+    "dataSource": "db",
+    "public": false
+  },
+  "BaseUser": {
+    "dataSource": "mongodb",
+    "public": true
+  },
+  "Team": {
+    "dataSource": "mongodb",
+    "public": false
+  },
+  "Project": {
+    "dataSource": "mongodb",
+    "public": true
+  }
+}

@@ -1,0 +1,22 @@
+<div class="navbar navbar-default navbar-fixed-top">
+  <div class="navbar-header">
+    <a class="navbar-brand" href="/">Universal</a>
+  </div>
+  <ul ng-if="!isAuthenticated()" class="nav navbar-nav">
+    <li><a href="/">Home</a></li>
+  </ul>
+  <ul ng-if="isAuthenticated()" class="nav navbar-nav">
+    <li><a href="/">Home</a></li>
+    <li><a href="/profile">Profile</a></li>
+    <li><a href="/settings">Settings</a></li>
+    <li><a href="/dashboard">Dashboard</a></li>    
+    <li><a href="/explore">Explore</a></li>    
+  </ul>
+  <ul ng-if="!isAuthenticated()" class="nav navbar-nav pull-right">
+    <li><a href="/login">Login</a></li>
+    <li><a href="/signup">Sign up</a></li>
+  </ul>
+  <ul ng-if="isAuthenticated()" ng-controller="PartLogoutCtrl" class="nav navbar-nav pull-right">
+    <li><a href="#" ng-click="logout()">Logout</a></li>
+  </ul>
+</div>

@@ -1,0 +1,37 @@
+<div page="profile">
+  <style scoped part-style>
+    [page="profile"] {
+      padding-top: 80px;
+    }
+
+    .items .item {
+      border: 1px solid #efefef;
+      border-radius: 2px;
+    }
+  </style>
+  <part-navbar></part-navbar>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-3">
+        <div>
+          <h2>{{ user.displayName }}</h2>
+          <h3>{{ user.team }}</h3>
+          <a href="/settings" class="btn btn-xs btn-default">edit your profile</a>          
+        </div>
+      </div>
+      <div class="col-sm-9">
+        <div class="projects">
+          <h3>Projects</h3>
+          <div class="items">
+            <div class="item col-sm-3" ng-repeat="project in projects">
+              <a href="/projects/{{ project.id }}">
+                <label>{{ project.name }}</label>
+              </a>
+            </div>
+          </div>    
+        </div>
+      </div>
+    </div>
+  </div>
+  <part-footer></part-footer>
+</div>
