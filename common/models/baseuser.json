@@ -39,6 +39,12 @@
       "model": "BaseUser",
       "foreignKey": "followerId",
       "through": "Follower"
+    },
+    "watched": {
+      "type": "hasMany",
+      "model": "Project",
+      "foreignKey": "watcherId",
+      "through": "Watch"
     }
   },
   "acls": [

@@ -1,0 +1,26 @@
+{
+  "name": "Watch",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "properties": {
+    "created_at": {
+      "type": "date",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "watched": {
+      "type": "belongsTo",
+      "model": "Project",
+      "foreignKey": "watchedId"
+    },
+    "watcher": {
+      "type": "belongsTo",
+      "model": "BaseUser",
+      "foreignKey": "watcherId"
+    }
+  },
+  "acls": [],
+  "methods": []
+}

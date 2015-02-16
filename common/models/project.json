@@ -22,6 +22,12 @@
       "type": "belongsTo",
       "model": "BaseUser",
       "foreignKey": "ownerId"
+    },
+    "watchers": {
+      "type": "hasMany",
+      "model": "BaseUSer",
+      "through": "Watch",
+      "foreingKey": "watchedId"
     }
   },
   "acls": [

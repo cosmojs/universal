@@ -1335,6 +1335,42 @@ module.factory(
           method: "PUT",
         },
 
+        // INTERNAL. Use BaseUser.watched.findById() instead.
+        "prototype$__findById__watched": {
+          url: urlBase + "/BaseUsers/:id/watched/:fk",
+          method: "GET",
+        },
+
+        // INTERNAL. Use BaseUser.watched.destroyById() instead.
+        "prototype$__destroyById__watched": {
+          url: urlBase + "/BaseUsers/:id/watched/:fk",
+          method: "DELETE",
+        },
+
+        // INTERNAL. Use BaseUser.watched.updateById() instead.
+        "prototype$__updateById__watched": {
+          url: urlBase + "/BaseUsers/:id/watched/:fk",
+          method: "PUT",
+        },
+
+        // INTERNAL. Use BaseUser.watched.link() instead.
+        "prototype$__link__watched": {
+          url: urlBase + "/BaseUsers/:id/watched/rel/:fk",
+          method: "PUT",
+        },
+
+        // INTERNAL. Use BaseUser.watched.unlink() instead.
+        "prototype$__unlink__watched": {
+          url: urlBase + "/BaseUsers/:id/watched/rel/:fk",
+          method: "DELETE",
+        },
+
+        // INTERNAL. Use BaseUser.watched.exists() instead.
+        "prototype$__exists__watched": {
+          url: urlBase + "/BaseUsers/:id/watched/rel/:fk",
+          method: "HEAD",
+        },
+
         /**
          * @ngdoc method
          * @name lbServices.BaseUser#prototype$__get__accessTokens
@@ -1681,6 +1717,31 @@ module.factory(
         // INTERNAL. Use BaseUser.projects.count() instead.
         "prototype$__count__projects": {
           url: urlBase + "/BaseUsers/:id/projects/count",
+          method: "GET",
+        },
+
+        // INTERNAL. Use BaseUser.watched() instead.
+        "prototype$__get__watched": {
+          url: urlBase + "/BaseUsers/:id/watched",
+          method: "GET",
+          isArray: true,
+        },
+
+        // INTERNAL. Use BaseUser.watched.create() instead.
+        "prototype$__create__watched": {
+          url: urlBase + "/BaseUsers/:id/watched",
+          method: "POST",
+        },
+
+        // INTERNAL. Use BaseUser.watched.destroyAll() instead.
+        "prototype$__delete__watched": {
+          url: urlBase + "/BaseUsers/:id/watched",
+          method: "DELETE",
+        },
+
+        // INTERNAL. Use BaseUser.watched.count() instead.
+        "prototype$__count__watched": {
+          url: urlBase + "/BaseUsers/:id/watched/count",
           method: "GET",
         },
 
@@ -2350,9 +2411,63 @@ module.factory(
           method: "GET",
         },
 
+        // INTERNAL. Use Follower.following() instead.
+        "::get::Follower::following": {
+          url: urlBase + "/Followers/:id/following",
+          method: "GET",
+        },
+
+        // INTERNAL. Use Follower.following.create() instead.
+        "::create::Follower::following": {
+          url: urlBase + "/Followers/:id/following",
+          method: "POST",
+        },
+
+        // INTERNAL. Use Follower.following.update() instead.
+        "::update::Follower::following": {
+          url: urlBase + "/Followers/:id/following",
+          method: "PUT",
+        },
+
+        // INTERNAL. Use Follower.following.destroy() instead.
+        "::destroy::Follower::following": {
+          url: urlBase + "/Followers/:id/following",
+          method: "DELETE",
+        },
+
+        // INTERNAL. Use Follower.follower() instead.
+        "::get::Follower::follower": {
+          url: urlBase + "/Followers/:id/follower",
+          method: "GET",
+        },
+
+        // INTERNAL. Use Follower.follower.create() instead.
+        "::create::Follower::follower": {
+          url: urlBase + "/Followers/:id/follower",
+          method: "POST",
+        },
+
+        // INTERNAL. Use Follower.follower.update() instead.
+        "::update::Follower::follower": {
+          url: urlBase + "/Followers/:id/follower",
+          method: "PUT",
+        },
+
+        // INTERNAL. Use Follower.follower.destroy() instead.
+        "::destroy::Follower::follower": {
+          url: urlBase + "/Followers/:id/follower",
+          method: "DELETE",
+        },
+
         // INTERNAL. Use Project.owner() instead.
         "::get::Project::owner": {
           url: urlBase + "/Projects/:id/owner",
+          method: "GET",
+        },
+
+        // INTERNAL. Use Watch.watcher() instead.
+        "::get::Watch::watcher": {
+          url: urlBase + "/Watches/:id/watcher",
           method: "GET",
         },
 
@@ -3565,6 +3680,377 @@ module.factory(
           var action = TargetResource["::updateById::BaseUser::projects"];
           return action.apply(R, arguments);
         };
+    /**
+     * @ngdoc object
+     * @name lbServices.BaseUser.watched
+     * @object
+     * @description
+     *
+     * The object `BaseUser.watched` groups methods
+     * manipulating `Project` instances related to `BaseUser`.
+     *
+     * Use {@link lbServices.BaseUser#watched} to query
+     * all related instances.
+     */
+
+
+        /**
+         * @ngdoc method
+         * @name lbServices.BaseUser#watched
+         * @methodOf lbServices.BaseUser
+         *
+         * @description
+         *
+         * Queries watched of BaseUser.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - User id
+         *
+         *  - `filter` – `{object=}` - 
+         *
+         * @param {Function(Array.<Object>, Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {Function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @return {Array.<Object>} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Project` object.)
+         * </em>
+         */
+        R.watched = function() {
+          var TargetResource = $injector.get("Project");
+          var action = TargetResource["::get::BaseUser::watched"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.BaseUser.watched#count
+         * @methodOf lbServices.BaseUser.watched
+         *
+         * @description
+         *
+         * Counts watched of BaseUser.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - User id
+         *
+         *  - `where` – `{object=}` - Criteria to match model instances
+         *
+         * @param {Function(Object, Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {Function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @return {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `count` – `{number=}` - 
+         */
+        R.watched.count = function() {
+          var TargetResource = $injector.get("Project");
+          var action = TargetResource["::count::BaseUser::watched"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.BaseUser.watched#create
+         * @methodOf lbServices.BaseUser.watched
+         *
+         * @description
+         *
+         * Creates a new instance in watched of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - User id
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {Function(Object, Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {Function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @return {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Project` object.)
+         * </em>
+         */
+        R.watched.create = function() {
+          var TargetResource = $injector.get("Project");
+          var action = TargetResource["::create::BaseUser::watched"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.BaseUser.watched#destroyAll
+         * @methodOf lbServices.BaseUser.watched
+         *
+         * @description
+         *
+         * Deletes all watched of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - User id
+         *
+         * @param {Function(Object, Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {Function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @return {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * This method returns no data.
+         */
+        R.watched.destroyAll = function() {
+          var TargetResource = $injector.get("Project");
+          var action = TargetResource["::delete::BaseUser::watched"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.BaseUser.watched#destroyById
+         * @methodOf lbServices.BaseUser.watched
+         *
+         * @description
+         *
+         * Delete a related item by id for watched
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - User id
+         *
+         *  - `fk` – `{*}` - Foreign key for watched
+         *
+         * @param {Function(Object, Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {Function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @return {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * This method returns no data.
+         */
+        R.watched.destroyById = function() {
+          var TargetResource = $injector.get("Project");
+          var action = TargetResource["::destroyById::BaseUser::watched"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.BaseUser.watched#exists
+         * @methodOf lbServices.BaseUser.watched
+         *
+         * @description
+         *
+         * Check the existence of watched relation to an item by id
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - User id
+         *
+         *  - `fk` – `{*}` - Foreign key for watched
+         *
+         * @param {Function(Object, Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {Function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @return {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Project` object.)
+         * </em>
+         */
+        R.watched.exists = function() {
+          var TargetResource = $injector.get("Project");
+          var action = TargetResource["::exists::BaseUser::watched"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.BaseUser.watched#findById
+         * @methodOf lbServices.BaseUser.watched
+         *
+         * @description
+         *
+         * Find a related item by id for watched
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - User id
+         *
+         *  - `fk` – `{*}` - Foreign key for watched
+         *
+         * @param {Function(Object, Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {Function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @return {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Project` object.)
+         * </em>
+         */
+        R.watched.findById = function() {
+          var TargetResource = $injector.get("Project");
+          var action = TargetResource["::findById::BaseUser::watched"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.BaseUser.watched#link
+         * @methodOf lbServices.BaseUser.watched
+         *
+         * @description
+         *
+         * Add a related item by id for watched
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - User id
+         *
+         *  - `fk` – `{*}` - Foreign key for watched
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {Function(Object, Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {Function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @return {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Project` object.)
+         * </em>
+         */
+        R.watched.link = function() {
+          var TargetResource = $injector.get("Project");
+          var action = TargetResource["::link::BaseUser::watched"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.BaseUser.watched#unlink
+         * @methodOf lbServices.BaseUser.watched
+         *
+         * @description
+         *
+         * Remove the watched relation to an item by id
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - User id
+         *
+         *  - `fk` – `{*}` - Foreign key for watched
+         *
+         * @param {Function(Object, Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {Function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @return {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * This method returns no data.
+         */
+        R.watched.unlink = function() {
+          var TargetResource = $injector.get("Project");
+          var action = TargetResource["::unlink::BaseUser::watched"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.BaseUser.watched#updateById
+         * @methodOf lbServices.BaseUser.watched
+         *
+         * @description
+         *
+         * Update a related item by id for watched
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - User id
+         *
+         *  - `fk` – `{*}` - Foreign key for watched
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {Function(Object, Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {Function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @return {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Project` object.)
+         * </em>
+         */
+        R.watched.updateById = function() {
+          var TargetResource = $injector.get("Project");
+          var action = TargetResource["::updateById::BaseUser::watched"];
+          return action.apply(R, arguments);
+        };
 
     /**
     * @ngdoc property
@@ -3602,6 +4088,54 @@ module.factory(
       urlBase + "/Followers/:id",
       { 'id': '@id' },
       {
+
+        // INTERNAL. Use Follower.following() instead.
+        "prototype$__get__following": {
+          url: urlBase + "/Followers/:id/following",
+          method: "GET",
+        },
+
+        // INTERNAL. Use Follower.following.create() instead.
+        "prototype$__create__following": {
+          url: urlBase + "/Followers/:id/following",
+          method: "POST",
+        },
+
+        // INTERNAL. Use Follower.following.update() instead.
+        "prototype$__update__following": {
+          url: urlBase + "/Followers/:id/following",
+          method: "PUT",
+        },
+
+        // INTERNAL. Use Follower.following.destroy() instead.
+        "prototype$__destroy__following": {
+          url: urlBase + "/Followers/:id/following",
+          method: "DELETE",
+        },
+
+        // INTERNAL. Use Follower.follower() instead.
+        "prototype$__get__follower": {
+          url: urlBase + "/Followers/:id/follower",
+          method: "GET",
+        },
+
+        // INTERNAL. Use Follower.follower.create() instead.
+        "prototype$__create__follower": {
+          url: urlBase + "/Followers/:id/follower",
+          method: "POST",
+        },
+
+        // INTERNAL. Use Follower.follower.update() instead.
+        "prototype$__update__follower": {
+          url: urlBase + "/Followers/:id/follower",
+          method: "PUT",
+        },
+
+        // INTERNAL. Use Follower.follower.destroy() instead.
+        "prototype$__destroy__follower": {
+          url: urlBase + "/Followers/:id/follower",
+          method: "DELETE",
+        },
 
         /**
          * @ngdoc method
@@ -4069,6 +4603,318 @@ module.factory(
         R["removeById"] = R["deleteById"];
 
 
+    /**
+     * @ngdoc object
+     * @name lbServices.Follower.following
+     * @object
+     * @description
+     *
+     * The object `Follower.following` groups methods
+     * manipulating `BaseUser` instances related to `Follower`.
+     *
+     * Use {@link lbServices.Follower#following} to query
+     * all related instances.
+     */
+
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Follower#following
+         * @methodOf lbServices.Follower
+         *
+         * @description
+         *
+         * Fetches hasOne relation following
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         *  - `refresh` – `{boolean=}` - 
+         *
+         * @param {Function(Object, Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {Function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @return {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `BaseUser` object.)
+         * </em>
+         */
+        R.following = function() {
+          var TargetResource = $injector.get("BaseUser");
+          var action = TargetResource["::get::Follower::following"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Follower.following#create
+         * @methodOf lbServices.Follower.following
+         *
+         * @description
+         *
+         * Creates a new instance in following of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {Function(Object, Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {Function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @return {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `BaseUser` object.)
+         * </em>
+         */
+        R.following.create = function() {
+          var TargetResource = $injector.get("BaseUser");
+          var action = TargetResource["::create::Follower::following"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Follower.following#destroy
+         * @methodOf lbServices.Follower.following
+         *
+         * @description
+         *
+         * Deletes following of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         * @param {Function(Object, Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {Function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @return {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * This method returns no data.
+         */
+        R.following.destroy = function() {
+          var TargetResource = $injector.get("BaseUser");
+          var action = TargetResource["::destroy::Follower::following"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Follower.following#update
+         * @methodOf lbServices.Follower.following
+         *
+         * @description
+         *
+         * Update following of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {Function(Object, Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {Function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @return {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `BaseUser` object.)
+         * </em>
+         */
+        R.following.update = function() {
+          var TargetResource = $injector.get("BaseUser");
+          var action = TargetResource["::update::Follower::following"];
+          return action.apply(R, arguments);
+        };
+    /**
+     * @ngdoc object
+     * @name lbServices.Follower.follower
+     * @object
+     * @description
+     *
+     * The object `Follower.follower` groups methods
+     * manipulating `BaseUser` instances related to `Follower`.
+     *
+     * Use {@link lbServices.Follower#follower} to query
+     * all related instances.
+     */
+
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Follower#follower
+         * @methodOf lbServices.Follower
+         *
+         * @description
+         *
+         * Fetches hasOne relation follower
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         *  - `refresh` – `{boolean=}` - 
+         *
+         * @param {Function(Object, Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {Function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @return {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `BaseUser` object.)
+         * </em>
+         */
+        R.follower = function() {
+          var TargetResource = $injector.get("BaseUser");
+          var action = TargetResource["::get::Follower::follower"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Follower.follower#create
+         * @methodOf lbServices.Follower.follower
+         *
+         * @description
+         *
+         * Creates a new instance in follower of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {Function(Object, Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {Function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @return {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `BaseUser` object.)
+         * </em>
+         */
+        R.follower.create = function() {
+          var TargetResource = $injector.get("BaseUser");
+          var action = TargetResource["::create::Follower::follower"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Follower.follower#destroy
+         * @methodOf lbServices.Follower.follower
+         *
+         * @description
+         *
+         * Deletes follower of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         * @param {Function(Object, Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {Function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @return {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * This method returns no data.
+         */
+        R.follower.destroy = function() {
+          var TargetResource = $injector.get("BaseUser");
+          var action = TargetResource["::destroy::Follower::follower"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Follower.follower#update
+         * @methodOf lbServices.Follower.follower
+         *
+         * @description
+         *
+         * Update follower of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {Function(Object, Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {Function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @return {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `BaseUser` object.)
+         * </em>
+         */
+        R.follower.update = function() {
+          var TargetResource = $injector.get("BaseUser");
+          var action = TargetResource["::update::Follower::follower"];
+          return action.apply(R, arguments);
+        };
 
     /**
     * @ngdoc property
@@ -4472,6 +5318,42 @@ module.factory(
           method: "PUT",
         },
 
+        // INTERNAL. Use BaseUser.watched.findById() instead.
+        "::findById::BaseUser::watched": {
+          url: urlBase + "/BaseUsers/:id/watched/:fk",
+          method: "GET",
+        },
+
+        // INTERNAL. Use BaseUser.watched.destroyById() instead.
+        "::destroyById::BaseUser::watched": {
+          url: urlBase + "/BaseUsers/:id/watched/:fk",
+          method: "DELETE",
+        },
+
+        // INTERNAL. Use BaseUser.watched.updateById() instead.
+        "::updateById::BaseUser::watched": {
+          url: urlBase + "/BaseUsers/:id/watched/:fk",
+          method: "PUT",
+        },
+
+        // INTERNAL. Use BaseUser.watched.link() instead.
+        "::link::BaseUser::watched": {
+          url: urlBase + "/BaseUsers/:id/watched/rel/:fk",
+          method: "PUT",
+        },
+
+        // INTERNAL. Use BaseUser.watched.unlink() instead.
+        "::unlink::BaseUser::watched": {
+          url: urlBase + "/BaseUsers/:id/watched/rel/:fk",
+          method: "DELETE",
+        },
+
+        // INTERNAL. Use BaseUser.watched.exists() instead.
+        "::exists::BaseUser::watched": {
+          url: urlBase + "/BaseUsers/:id/watched/rel/:fk",
+          method: "HEAD",
+        },
+
         // INTERNAL. Use BaseUser.projects() instead.
         "::get::BaseUser::projects": {
           url: urlBase + "/BaseUsers/:id/projects",
@@ -4494,6 +5376,37 @@ module.factory(
         // INTERNAL. Use BaseUser.projects.count() instead.
         "::count::BaseUser::projects": {
           url: urlBase + "/BaseUsers/:id/projects/count",
+          method: "GET",
+        },
+
+        // INTERNAL. Use BaseUser.watched() instead.
+        "::get::BaseUser::watched": {
+          url: urlBase + "/BaseUsers/:id/watched",
+          method: "GET",
+          isArray: true,
+        },
+
+        // INTERNAL. Use BaseUser.watched.create() instead.
+        "::create::BaseUser::watched": {
+          url: urlBase + "/BaseUsers/:id/watched",
+          method: "POST",
+        },
+
+        // INTERNAL. Use BaseUser.watched.destroyAll() instead.
+        "::delete::BaseUser::watched": {
+          url: urlBase + "/BaseUsers/:id/watched",
+          method: "DELETE",
+        },
+
+        // INTERNAL. Use BaseUser.watched.count() instead.
+        "::count::BaseUser::watched": {
+          url: urlBase + "/BaseUsers/:id/watched/count",
+          method: "GET",
+        },
+
+        // INTERNAL. Use Watch.watched() instead.
+        "::get::Watch::watched": {
+          url: urlBase + "/Watches/:id/watched",
           method: "GET",
         },
       }
@@ -4668,6 +5581,594 @@ module.factory(
     * i.e. `Project`.
     */
     R.modelName = "Project";
+
+    return R;
+  }]);
+
+/**
+ * @ngdoc object
+ * @name lbServices.Watch
+ * @object
+ *
+ * @description
+ *
+ * A $resource object for interacting with the `Watch` model.
+ *
+ * ## Example
+ *
+ * See
+ * {@link http://docs.angularjs.org/api/ngResource.$resource#example $resource}
+ * for an example of using this object.
+ *
+ */
+module.factory(
+  "Watch",
+  ['LoopBackResource', 'LoopBackAuth', '$injector', function(Resource, LoopBackAuth, $injector) {
+    var R = Resource(
+      urlBase + "/Watches/:id",
+      { 'id': '@id' },
+      {
+
+        // INTERNAL. Use Watch.watched() instead.
+        "prototype$__get__watched": {
+          url: urlBase + "/Watches/:id/watched",
+          method: "GET",
+        },
+
+        // INTERNAL. Use Watch.watcher() instead.
+        "prototype$__get__watcher": {
+          url: urlBase + "/Watches/:id/watcher",
+          method: "GET",
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Watch#create
+         * @methodOf lbServices.Watch
+         *
+         * @description
+         *
+         * Create a new instance of the model and persist it into the data source
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *   This method does not accept any parameters.
+         *   Supply an empty object or omit this argument altogether.
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {Function(Object, Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {Function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @return {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Watch` object.)
+         * </em>
+         */
+        "create": {
+          url: urlBase + "/Watches",
+          method: "POST",
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Watch#upsert
+         * @methodOf lbServices.Watch
+         *
+         * @description
+         *
+         * Update an existing model instance or insert a new one into the data source
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *   This method does not accept any parameters.
+         *   Supply an empty object or omit this argument altogether.
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {Function(Object, Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {Function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @return {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Watch` object.)
+         * </em>
+         */
+        "upsert": {
+          url: urlBase + "/Watches",
+          method: "PUT",
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Watch#exists
+         * @methodOf lbServices.Watch
+         *
+         * @description
+         *
+         * Check whether a model instance exists in the data source
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Model id
+         *
+         * @param {Function(Object, Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {Function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @return {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `exists` – `{boolean=}` - 
+         */
+        "exists": {
+          url: urlBase + "/Watches/:id/exists",
+          method: "GET",
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Watch#findById
+         * @methodOf lbServices.Watch
+         *
+         * @description
+         *
+         * Find a model instance by id from the data source
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Model id
+         *
+         * @param {Function(Object, Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {Function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @return {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Watch` object.)
+         * </em>
+         */
+        "findById": {
+          url: urlBase + "/Watches/:id",
+          method: "GET",
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Watch#find
+         * @methodOf lbServices.Watch
+         *
+         * @description
+         *
+         * Find all instances of the model matched by filter from the data source
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `filter` – `{object=}` - Filter defining fields, where, orderBy, offset, and limit
+         *
+         * @param {Function(Array.<Object>, Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {Function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @return {Array.<Object>} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Watch` object.)
+         * </em>
+         */
+        "find": {
+          url: urlBase + "/Watches",
+          method: "GET",
+          isArray: true,
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Watch#findOne
+         * @methodOf lbServices.Watch
+         *
+         * @description
+         *
+         * Find first instance of the model matched by filter from the data source
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `filter` – `{object=}` - Filter defining fields, where, orderBy, offset, and limit
+         *
+         * @param {Function(Object, Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {Function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @return {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Watch` object.)
+         * </em>
+         */
+        "findOne": {
+          url: urlBase + "/Watches/findOne",
+          method: "GET",
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Watch#updateAll
+         * @methodOf lbServices.Watch
+         *
+         * @description
+         *
+         * Update instances of the model matched by where from the data source
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `where` – `{object=}` - Criteria to match model instances
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {Function(Object, Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {Function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @return {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * This method returns no data.
+         */
+        "updateAll": {
+          url: urlBase + "/Watches/update",
+          method: "POST",
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Watch#deleteById
+         * @methodOf lbServices.Watch
+         *
+         * @description
+         *
+         * Delete a model instance by id from the data source
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Model id
+         *
+         * @param {Function(Object, Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {Function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @return {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * This method returns no data.
+         */
+        "deleteById": {
+          url: urlBase + "/Watches/:id",
+          method: "DELETE",
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Watch#count
+         * @methodOf lbServices.Watch
+         *
+         * @description
+         *
+         * Count instances of the model matched by where from the data source
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `where` – `{object=}` - Criteria to match model instances
+         *
+         * @param {Function(Object, Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {Function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @return {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `count` – `{number=}` - 
+         */
+        "count": {
+          url: urlBase + "/Watches/count",
+          method: "GET",
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Watch#prototype$updateAttributes
+         * @methodOf lbServices.Watch
+         *
+         * @description
+         *
+         * Update attributes for a model instance and persist it into the data source
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {Function(Object, Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {Function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @return {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Watch` object.)
+         * </em>
+         */
+        "prototype$updateAttributes": {
+          url: urlBase + "/Watches/:id",
+          method: "PUT",
+        },
+      }
+    );
+
+
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Watch#updateOrCreate
+         * @methodOf lbServices.Watch
+         *
+         * @description
+         *
+         * Update an existing model instance or insert a new one into the data source
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *   This method does not accept any parameters.
+         *   Supply an empty object or omit this argument altogether.
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {Function(Object, Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {Function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @return {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Watch` object.)
+         * </em>
+         */
+        R["updateOrCreate"] = R["upsert"];
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Watch#update
+         * @methodOf lbServices.Watch
+         *
+         * @description
+         *
+         * Update instances of the model matched by where from the data source
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `where` – `{object=}` - Criteria to match model instances
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {Function(Object, Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {Function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @return {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * This method returns no data.
+         */
+        R["update"] = R["updateAll"];
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Watch#destroyById
+         * @methodOf lbServices.Watch
+         *
+         * @description
+         *
+         * Delete a model instance by id from the data source
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Model id
+         *
+         * @param {Function(Object, Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {Function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @return {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * This method returns no data.
+         */
+        R["destroyById"] = R["deleteById"];
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Watch#removeById
+         * @methodOf lbServices.Watch
+         *
+         * @description
+         *
+         * Delete a model instance by id from the data source
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Model id
+         *
+         * @param {Function(Object, Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {Function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @return {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * This method returns no data.
+         */
+        R["removeById"] = R["deleteById"];
+
+
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Watch#watched
+         * @methodOf lbServices.Watch
+         *
+         * @description
+         *
+         * Fetches belongsTo relation watched
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         *  - `refresh` – `{boolean=}` - 
+         *
+         * @param {Function(Object, Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {Function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @return {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Project` object.)
+         * </em>
+         */
+        R.watched = function() {
+          var TargetResource = $injector.get("Project");
+          var action = TargetResource["::get::Watch::watched"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Watch#watcher
+         * @methodOf lbServices.Watch
+         *
+         * @description
+         *
+         * Fetches belongsTo relation watcher
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         *  - `refresh` – `{boolean=}` - 
+         *
+         * @param {Function(Object, Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {Function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @return {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `BaseUser` object.)
+         * </em>
+         */
+        R.watcher = function() {
+          var TargetResource = $injector.get("BaseUser");
+          var action = TargetResource["::get::Watch::watcher"];
+          return action.apply(R, arguments);
+        };
+
+    /**
+    * @ngdoc property
+    * @name lbServices.Watch#modelName
+    * @propertyOf lbServices.Watch
+    * @description
+    * The name of the model represented by this $resource,
+    * i.e. `Watch`.
+    */
+    R.modelName = "Watch";
 
     return R;
   }]);

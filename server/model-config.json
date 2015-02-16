@@ -41,5 +41,9 @@
   "Project": {
     "dataSource": "mongodb",
     "public": true
+  },
+  "Watch": {
+    "dataSource": "mongodb",
+    "public": true
   }
 }
