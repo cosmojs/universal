@@ -1,12 +1,5 @@
 module.exports = function(BaseUser) {
 
-  // BaseUser.settings.acls.push({ 
-  //     "principalType": "ROLE", 
-  //     "principalId": "$owner", 
-  //     "permission": "ALLOW", 
-  //     "property": "upsert" 
-  // });
-
   // unlink
   BaseUser.unlink = function(id, provider, callback) {
     BaseUser.findById(id, function(err, user) {

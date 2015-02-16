@@ -40,7 +40,7 @@
     <h3>Users</h3>
     <div class="users">
       <div class="user" ng-repeat="user in users">
-        <a href="/@{{ user.username }}">
+        <a href="/@{{ user.username || user.id }}">
           <h4>{{ user.displayName }}</h4>
         </a>
       </div>

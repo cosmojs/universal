@@ -1,4 +1,13 @@
 <div page="settings">
+  <style scoped part-style>
+    nav.menu {
+      margin-top: 30px;
+    }
+
+    nav.menu li {
+      margin-bottom: 5px;
+    }
+  </style>
   <part-navbar></part-navbar>
   <part-jumbotron>
     <div class="container">
@@ -8,16 +17,23 @@
   <div class="container">
     <div class="row">
       <div class="col-sm-3">
-        <div>
-          <a href="/profile">&larr; profile</a>        
-        </div>
+        <nav class="menu">
+          <ul class="list-unstyled">
+            <li>
+              <a href="/profile">&larr; profile</a>
+            </li>
+            <li ng-repeat="tab in tabs">
+              <a href="/settings/{{ tab }}">{{ tab }}</a>
+            </li>
+          </ul>
+        </nav>     
       </div>
       <div class="col-sm-9">
-        <part-settings-profile></part-settings-profile>
-        <part-settings-email></part-settings-email>
-        <part-settings-password></part-settings-password>
-        <part-settings-notifications></part-settings-notifications>
-        <part-settings-accounts></part-settings-accounts>
+        <part-settings-profile ng-show="tab === 'profile'"></part-settings-profile>
+        <part-settings-email ng-show="tab === 'email'"></part-settings-email>
+        <part-settings-password ng-show="tab === 'password'"></part-settings-password>
+        <part-settings-notifications ng-show="tab === 'notifications'"></part-settings-notifications>
+        <part-settings-accounts ng-show="tab === 'accounts'"></part-settings-accounts>
       </div>
     </div>    
   </div>

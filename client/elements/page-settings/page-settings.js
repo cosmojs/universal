@@ -7,19 +7,38 @@ angular.module('elements')
       if (!isAuthenticated) {
         $location.path('/login');
       } else {
-        deferred.resolve();
+        deferred.resolve('');
       }
       return deferred.promise;
     }
 
-    $routeProvider.when('/settings', {
-      templateUrl: '/elements/page-settings/page-settings.html',
-      controller: 'PageSettingsCtrl',
-      resolve: { authenticated: authenticated }
-    });
+    $routeProvider
+      .when('/settings', {
+        templateUrl: '/elements/page-settings/page-settings.html',
+        controller: 'PageSettingsCtrl',
+        resolve: { authenticated: authenticated }
+      })
+      .when('/settings/:tab', {
+        templateUrl: '/elements/page-settings/page-settings.html',
+        controller: 'PageSettingsCtrl',
+        resolve: { authenticated: authenticated }
+      })
 
   })
-  .controller('PageSettingsCtrl', function($scope, $auth, $alert, $http, BaseUser) {
+  .controller('PageSettingsCtrl', function($scope, $auth, $alert, $route, BaseUser) {
+    var tabs = [
+      'profile',
+      'email',
+      'password',
+      'notifications',
+      'accounts'
+    ];
+    var tab = $route.current.params.tab || 'profile';
+
+    if (tabs.indexOf(tab) < 0) tab = 'profile';
+
+    $scope.tabs = tabs;
+    $scope.tab = tab;
 
     $scope.user = BaseUser.getCurrent();
 
