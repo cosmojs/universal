@@ -40,6 +40,16 @@
     </div>
   </div>
   <div class="container">
+    <h3>Events</h3>
+    <div class="events">
+      <div class="events" ng-repeat="event in events">
+        <a href="/events/{{ event.id }}">
+          <h4>{{ event.title }}</h4>
+        </a>        
+      </div>
+    </div>
+  </div>
+  <div class="container">
     <h3>Users</h3>
     <div class="users">
       <div class="user" ng-repeat="user in users">

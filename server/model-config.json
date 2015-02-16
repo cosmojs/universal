@@ -45,5 +45,9 @@
   "Watch": {
     "dataSource": "mongodb",
     "public": true
+  },
+  "Event": {
+    "dataSource": "mongodb",
+    "public": true
   }
 }
