@@ -6,18 +6,21 @@
     "created_at": {
       "type": "date",
       "required": true
-    },
-    "followingId": {
-      "type": "number",
-      "required": true
-    },
-    "followerId": {
-      "type": "number",
-      "required": true
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "following": {
+      "type": "hasOne",
+      "model": "BaseUser",
+      "foreignKey": "followingId"
+    },
+    "follower": {
+      "type": "hasOne",
+      "model": "BaseUser",
+      "foreignKey": "followerId"
+    }
+  },
   "acls": [],
   "methods": []
 }

@@ -63,20 +63,91 @@ angular.module('elements')
       });
 
   })
-  .controller('PageProfileCtrl', function($scope, $route, $http, BaseUser, Project, Follower) {
+  .controller('PageProfileCtrl', function($scope, $route, $http, BaseUser) {
 
     var users = $route.current.locals.users;
-    var requested = users.requested;
-    var current = users.current;
-    var isCurrentUser = requested.id === current.id;
 
-    $scope.user = requested;
-    $scope.isCurrentUser = isCurrentUser;
+    $scope.user = users.requested;
+    $scope.current = users.current;
+    $scope.isCurrentUser = users.requested.id === users.current.id;
+
+  })
+  .controller('PartProfileProjectsCtrl', function ($scope, Project) {
 
     $scope.projects = Project.find({ filter: { where: { ownerId: $scope.user.id } } });
 
-    // $scope.followers = Follower.find({ filter: { where: { followingId: $scope.user.id } } });
-    // $scope.following = Follower.find({ filter: { where: { followerId: $scope.user.id } } });
+  })
+  .controller('FollowersCtrl', function ($scope, Follower) {
+
+    $scope.getFollowers = function () {
+      Follower
+        .find({ filter: { where: { followingId: $scope.user.id } } })
+        .$promise
+        .then(function (users) {
+          $scope.followers = users;
+        });
+    };
+
+    $scope.getFollowers();
+  })
+  .controller('FollowingCtrl', function ($scope, Follower) {
+
+    Follower
+      .find({ filter: { where: { followerId: $scope.user.id } } })
+      .$promise
+      .then(function (users) {
+        $scope.following = users
+      });
+
+  })
+  .controller('FollowCtrl', function ($scope, Follower) {
+
+    $scope.connection = null;
+
+    $scope.getConnection = function () {
+      Follower.find({ filter: { where: { followingId: $scope.user.id, followerId: $scope.current.id } } })
+        .$promise
+        .then(function (connections) {
+          $scope.connection = connections[0];
+        })
+        .catch(function () {
+          $scope.connection = null;
+        });
+    };
+
+    $scope.canFollow = function () {
+      return !$scope.isCurrentUser && !$scope.connection;
+    };
+
+    $scope.canUnfollow = function () {
+      return $scope.connection;
+    }
+
+    $scope.follow = function () {
+      Follower.create({
+        followingId: $scope.user.id,
+        followerId: $scope.current.id,
+        created_at: Date.now()
+      })
+      .$promise
+      .then(function () {
+        $scope.getConnection();
+        $scope.getFollowers();
+      });
+    };
+
+    $scope.unfollow = function () {
+      Follower
+        .deleteById({ id: $scope.connection.id })
+        .$promise
+        .then(function () {
+          $scope.connection = null;
+          $scope.getFollowers();
+        });
+    };
+
+    $scope.getConnection();
+
   })
   .filter('preview', function () {
 

@@ -28,17 +28,25 @@
             <a href="/settings" class="btn btn-xs btn-default">edit your profile</a>          
           </div>
         </div>
-        <!-- 
-        <div>
-          <span>{{ user.followers.length }}</span><span> follower</span>
+        <div ng-controller="FollowingCtrl">
+          <div class="counter">
+            <span class="value">{{ following.length }}</span>
+            <span class="key"> following</span>          
+          </div>
         </div>
-        <div>
-          <span>{{ user.following.length }}</span><span> following</span>
+        <div ng-controller="FollowersCtrl">
+          <div class="counter">
+            <span class="value">{{ followers.length }}</span>
+            <span class="key"> followers</span>
+          </div>
+          <div ng-controller="FollowCtrl">
+            <button class="btn btn-sm btn-primary" ng-click="follow()" ng-show="canFollow()">follow</button>
+            <button class="btn btn-sm btn-danger" ng-click="unfollow()" ng-show="canUnfollow()">unfollow</button>
+          </div>
         </div>
-        -->
       </div>
       <div class="col-xs-9">
-        <div class="projects">
+        <div class="projects" ng-controller="PartProfileProjectsCtrl">
           <h3>Projects</h3>
           <div class="items">
             <div class="project" ng-repeat="project in projects">
@@ -50,7 +58,10 @@
                 </div>
               </a>
             </div>
-          </div>    
+          </div>
+          <div class="alert alert-warning" ng-show="!projects.length">
+            <p>No projects yet.</p>              
+          </div>
         </div>
       </div>
     </div>
