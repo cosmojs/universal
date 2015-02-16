@@ -7,10 +7,12 @@ angular.module('elements')
     });
 
   })
-  .controller('PageExploreCtrl', function($scope, $location, BaseUser, Project) {
+  .controller('PageExploreCtrl', function($scope, $location, BaseUser, Project, Event) {
 
     $scope.projects = Project.find({});
 
     $scope.users = BaseUser.find({});
+
+    $scope.events = Event.find({});
 
   });

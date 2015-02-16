@@ -19,7 +19,7 @@ angular.module('elements')
     });
 
   })
-  .controller('PageDashboardCtrl', function($scope, $location, BaseUser, Project) {
+  .controller('PageDashboardCtrl', function($scope, $location, BaseUser, Project, Event) {
 
     $scope.user = BaseUser.getCurrent();
 
@@ -34,7 +34,19 @@ angular.module('elements')
       })
       .$promise
       .then(function (project) {
-        $location.path('projects/' + project.id + '/edit');
+        $location.path('/projects/' + project.id + '/edit');
+      })
+    };
+
+    $scope.createEvent = function () {
+      Event.create({
+        ownerId: $scope.user.id,
+        created_at: Date.now(),
+        title: 'event'
+      })
+      .$promise
+      .then(function (event) {
+        $location.path('/events/' + event.id + '/edit')
       })
     };
 
