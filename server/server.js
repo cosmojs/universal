@@ -2,7 +2,8 @@ var bodyParser = require('body-parser');
 var boot = require('loopback-boot');
 var loopback = require('loopback');
 var path = require('path');
-var satellizer = require('./satellizer');
+var satellizer = require('loopback-satellizer');
+var config = require('./config');
 
 var app = module.exports = loopback();
 
@@ -11,18 +12,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 boot(app, __dirname);
 
-var indexpath = path.resolve(__dirname, '../client/index.html');
 app.use(loopback.static(path.resolve(__dirname, '../client')));
 
-app.get('/auth/me', function (req, res) {
-  res.send(req.params.token);
-});
+satellizer(app, config);
 
-satellizer(app);
-
-app.get('*', function (req, res) {
-  res.sendFile(indexpath);
-});
+var indexPath = path.resolve(__dirname, '../client/index.html');
+app.get('*', function (req, res) { res.sendFile(indexPath); });
 
 app.start = function() {
   return app.listen(function() {

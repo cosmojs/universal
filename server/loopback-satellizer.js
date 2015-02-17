@@ -2,13 +2,12 @@ var request = require('request');
 var qs = require('querystring');
 var jwt = require('jwt-simple');
 var moment = require('moment');
-var config = require('./config');
 
-module.exports = function (app) {
+module.exports = function (app, config) {
 
-var User = app.models.BaseUser;
+var User = app.models[config.USER_MODEL];
 
-var authHeader = 'Satellizer';
+var authHeader = config.AUTH_HEADER;
 
 function createToken (user) {
   var payload = {
