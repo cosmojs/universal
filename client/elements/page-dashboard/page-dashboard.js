@@ -23,9 +23,9 @@ angular.module('elements')
 
     $scope.user = BaseUser.getCurrent();
 
-    $scope.projects = Project.find({
-      ownerId: $scope.user.id
-    });
+    $scope.projects = Project.find({ filter: { where: { ownerId: $scope.user.id } } });
+
+    $scope.events = Event.find({ filter: { where: { ownerId: $scope.user.id } } });
 
     $scope.createProject = function () {
       Project.create({

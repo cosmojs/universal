@@ -17,6 +17,7 @@
     "angular-resource": "~1.3.9",
     "angular-route": "~1.3.9",
     "angular-strap": "~2.1.6",
-    "satellizer": "~0.8.8"
+    "satellizer": "~0.8.8",
+    "ngAutocomplete": "~1.0.0"
   }
 }

@@ -5,7 +5,8 @@ angular.module('universal', [
     'mgcrea.ngStrap', 
     'elements',
     'satellizer',
-    'lbServices'
+    'lbServices',
+    'ngAutocomplete'
   ])
   .config(function ($locationProvider, $routeProvider) {
 

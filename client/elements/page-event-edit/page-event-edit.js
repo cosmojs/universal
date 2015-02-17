@@ -19,16 +19,31 @@ angular.module('elements')
     });
 
   })
-  .controller('PageEventEditCtrl', function($scope, $route, Event) {
+  .controller('PageEventEditCtrl', function($scope, $route, $alert, Event) {
 
     var eventId = $route.current.params.eventId;
 
-    $scope.event = Event.findById({
-      id: eventId
-    });
+    Event
+      .findById({ id: eventId })
+      .$promise
+      .then(function (event) {
+        event.startDate && (event.startDate = new Date(event.startDate));
+        event.endDate && (event.endDate = new Date(event.endDate));
+        $scope.event = event;
+      });
 
     $scope.update = function () {
-      Event.upsert($scope.event);
+      Event
+        .upsert($scope.event)
+        .$promise
+        .then(function () {
+          $alert({
+            content: 'Event has been updated',
+            animation: 'fadeZoomFadeDown',
+            type: 'material',
+            duration: 3
+          });
+        })
     };
 
   });
