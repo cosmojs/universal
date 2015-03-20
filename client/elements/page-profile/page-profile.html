@@ -3,66 +3,14 @@
     [page="profile"] {
       padding-top: 80px;
     }
-
-    .projects {
-      margin-bottom: 80px;
-    }
-    .projects .project {
-      margin-bottom: 40px;
-    }
-    .projects .project a:hover {
-      text-decoration: none;
-    }
   </style>
   <part-navbar></part-navbar>
   <div class="container">
-    <div class="row">
-      <div class="col-xs-3">
-        <div class="thumbnail">
-          <img src="/favicon.png" />
-        </div>
-        <div>
-          <h2>{{ user.displayName }}</h2>
-          <h3>{{ user.team }}</h3>
-          <div ng-show="{{ isCurrentUser }}">
-            <a href="/settings" class="btn btn-xs btn-default">edit your profile</a>          
-          </div>
-        </div>
-        <div ng-controller="FollowingCtrl">
-          <div class="counter">
-            <span class="value">{{ following.length }}</span>
-            <span class="key"> following</span>          
-          </div>
-        </div>
-        <div ng-controller="FollowersCtrl">
-          <div class="counter">
-            <span class="value">{{ followers.length }}</span>
-            <span class="key"> followers</span>
-          </div>
-          <div ng-controller="FollowCtrl">
-            <button class="btn btn-sm btn-primary" ng-click="follow()" ng-show="canFollow()">follow</button>
-            <button class="btn btn-sm btn-danger" ng-click="unfollow()" ng-show="canUnfollow()">unfollow</button>
-          </div>
-        </div>
-      </div>
-      <div class="col-xs-9">
-        <div class="projects" ng-controller="PartProfileProjectsCtrl">
-          <h3>Projects</h3>
-          <div class="items">
-            <div class="project" ng-repeat="project in projects">
-              <a href="/projects/{{ project.id }}">
-                <h4>{{ project.title }}</h4>
-                <p class="text-mute">{{ project.description | preview }}</p>
-                <div ng-show="isCurrentUser">
-                  <a href="/projects/{{ project.id }}/edit" class="btn btn-xs btn-default">edit project</a>
-                </div>
-              </a>
-            </div>
-          </div>
-          <div class="alert alert-warning" ng-show="!projects.length">
-            <p>No projects yet.</p>              
-          </div>
-        </div>
+    <div>
+      <h2>{{ user.displayName }}</h2>
+      <h3>{{ user.location }}</h3>
+      <div ng-show="{{ isCurrentUser }}">
+        <a href="/settings" class="btn btn-xs btn-default">edit your profile</a>          
       </div>
     </div>
   </div>
