@@ -29,25 +29,5 @@
   "BaseUser": {
     "dataSource": "mongodb",
     "public": true
-  },
-  "Follower": {
-    "dataSource": "mongodb",
-    "public": true
-  },
-  "Team": {
-    "dataSource": "mongodb",
-    "public": false
-  },
-  "Project": {
-    "dataSource": "mongodb",
-    "public": true
-  },
-  "Watch": {
-    "dataSource": "mongodb",
-    "public": true
-  },
-  "Event": {
-    "dataSource": "mongodb",
-    "public": true
   }
 }

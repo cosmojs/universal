@@ -17,36 +17,7 @@
     }
   },
   "validations": [],
-  "relations": {
-    "projects": {
-      "type": "hasMany",
-      "model": "Project",
-      "foreignKey": "ownerId"
-    },
-    "teams": {
-      "type": "hasMany",
-      "model": "Team",
-      "foreignKey": "ownerId"
-    },
-    "followers": {
-      "type": "hasMany",
-      "model": "BaseUser",
-      "foreignKey": "followingId",
-      "through": "Follower"
-    },
-    "following": {
-      "type": "hasMany",
-      "model": "BaseUser",
-      "foreignKey": "followerId",
-      "through": "Follower"
-    },
-    "watched": {
-      "type": "hasMany",
-      "model": "Project",
-      "foreignKey": "watcherId",
-      "through": "Watch"
-    }
-  },
+  "relations": {},
   "acls": [
     {
       "accessType": "READ",
